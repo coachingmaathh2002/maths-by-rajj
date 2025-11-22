@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { studentReviews } from '../constants';
+import { studentReviews } from '../constants.ts';
 
 const ReviewsView: React.FC = () => {
     return (

@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { testData } from '../constants';
+import { testData } from '../constants.ts';
 
 interface MockTestsViewProps {
     onSelectExam: (exam: string) => void;

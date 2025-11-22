@@ -1,4 +1,5 @@
-import { TestData, Student, Review, StudentData } from './types';
+
+import { TestData, Student, Review, StudentData } from './types.ts';
 
 export const studentData: StudentData = {
   'WBJEE': [

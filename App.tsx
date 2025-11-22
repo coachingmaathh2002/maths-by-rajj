@@ -1,16 +1,16 @@
 
 import React, { useState, useCallback } from 'react';
-import { View, Student } from './types';
-import { studentData } from './constants';
-import Navbar from './components/Navbar';
-import MockTestsView from './components/MockTestsView';
-import ExamTopicsView from './components/ExamTopicsView';
-import AboutView from './components/AboutView';
-import ReviewsView from './components/ReviewsView';
-import ContactView from './components/ContactView';
-import LoginModal from './components/LoginModal';
-import TestView from './components/TestView';
-import ResultsView from './components/ResultsView';
+import { View, Student } from './types.ts';
+import { studentData } from './constants.ts';
+import Navbar from './components/Navbar.tsx';
+import MockTestsView from './components/MockTestsView.tsx';
+import ExamTopicsView from './components/ExamTopicsView.tsx';
+import AboutView from './components/AboutView.tsx';
+import ReviewsView from './components/ReviewsView.tsx';
+import ContactView from './components/ContactView.tsx';
+import LoginModal from './components/LoginModal.tsx';
+import TestView from './components/TestView.tsx';
+import ResultsView from './components/ResultsView.tsx';
 
 const App: React.FC = () => {
     const [currentView, setCurrentView] = useState<View>(View.MockTests);
