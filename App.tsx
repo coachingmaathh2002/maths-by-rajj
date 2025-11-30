@@ -1,16 +1,15 @@
-
 import React, { useState, useCallback } from 'react';
-import { View, Student } from './types.ts';
-import { studentData } from './constants.ts';
-import Navbar from './components/Navbar.tsx';
-import MockTestsView from './components/MockTestsView.tsx';
-import ExamTopicsView from './components/ExamTopicsView.tsx';
-import AboutView from './components/AboutView.tsx';
-import ReviewsView from './components/ReviewsView.tsx';
-import ContactView from './components/ContactView.tsx';
-import LoginModal from './components/LoginModal.tsx';
-import TestView from './components/TestView.tsx';
-import ResultsView from './components/ResultsView.tsx';
+import { View, Student } from './types';
+import { studentData } from './constants';
+import Navbar from './components/Navbar';
+import MockTestsView from './components/MockTestsView';
+import ExamTopicsView from './components/ExamTopicsView';
+import AboutView from './components/AboutView';
+import ReviewsView from './components/ReviewsView';
+import ContactView from './components/ContactView';
+import LoginModal from './components/LoginModal';
+import TestView from './components/TestView';
+import ResultsView from './components/ResultsView';
 
 const App: React.FC = () => {
     const [currentView, setCurrentView] = useState<View>(View.MockTests);
@@ -35,6 +34,12 @@ const App: React.FC = () => {
     const handleSelectExam = useCallback((exam: string) => {
         setSelectedExam(exam);
         
+        // Special case for Free Mock Tests - bypass login
+        if (exam === 'Free Mock Tests') {
+            setCurrentView(View.ExamTopics);
+            return;
+        }
+
         if (isLoggedIn) {
             // If logged in, check if the clicked exam matches their authorized exam
             if (loggedInUserExam === exam) {
@@ -50,7 +55,7 @@ const App: React.FC = () => {
 
     // Triggered when user clicks "Start Practice" on a specific topic (Inside ExamTopicsView)
     const handleStartTest = useCallback((section: string) => {
-        // Logic assumes user is already logged in if they are seeing ExamTopicsView
+        // Logic assumes user is already logged in if they are seeing ExamTopicsView (or it is a free test)
         setSelectedSection(section);
         setCurrentView(View.Test);
     }, []);
@@ -105,6 +110,10 @@ const App: React.FC = () => {
             case View.Contact:
                 return <ContactView />;
             case View.ExamTopics:
+                 // Allow free mock tests without authentication check
+                 if (selectedExam === 'Free Mock Tests') {
+                     return <ExamTopicsView examName={selectedExam} onStartTest={handleStartTest} onBack={() => setCurrentView(View.MockTests)} />;
+                 }
                  // Safety check: should be logged in and have correct exam
                  if (isLoggedIn && loggedInUserExam) {
                      return <ExamTopicsView examName={loggedInUserExam} onStartTest={handleStartTest} onBack={handleLogout} />;

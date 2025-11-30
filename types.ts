@@ -41,6 +41,8 @@ export interface Student {
 export interface Review {
     name: string;
     review: string;
+    course: string;
+    image: string;
 }
 
 export type StudentData = {

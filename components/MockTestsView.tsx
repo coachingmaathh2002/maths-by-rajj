@@ -1,6 +1,5 @@
-
 import React from 'react';
-import { testData } from '../constants.ts';
+import { testData } from '../constants';
 
 interface MockTestsViewProps {
     onSelectExam: (exam: string) => void;
@@ -13,30 +12,45 @@ const MockTestsView: React.FC<MockTestsViewProps> = ({ onSelectExam }) => {
             const topicCount = Object.keys(examData).length;
             const totalQuestions = Object.values(examData).reduce((acc, topic) => acc + topic.questions.length, 0);
             const isComingSoon = totalQuestions === 0;
+            const isFree = examName === 'Free Mock Tests';
+
+            const cardStyle = isFree 
+                ? "border-red-500/30 bg-gradient-to-b from-red-950/30 to-slate-900/80 shadow-[0_0_15px_rgba(239,68,68,0.15)] hover:border-red-500/60 hover:shadow-[0_0_25px_rgba(239,68,68,0.25)]" 
+                : "glass-card";
+
+            const iconBg = isFree
+                ? "bg-gradient-to-br from-red-500/20 to-red-900/50 border-red-500/30 text-red-400"
+                : "bg-gradient-to-br from-slate-800 to-slate-900 border-white/10 text-brand-400";
+                
+            const badgeStyle = isFree
+                ? "bg-red-500/10 text-red-400 border-red-500/20"
+                : isComingSoon 
+                    ? "bg-slate-800 text-slate-500 border-slate-700" 
+                    : "bg-brand-500/10 text-brand-400 border-brand-500/20";
 
             return (
                 <div 
                     key={examName} 
                     onClick={() => onSelectExam(examName)}
-                    className="glass-card rounded-3xl p-8 flex flex-col justify-between group cursor-pointer relative overflow-hidden animate-slide-up"
+                    className={`${cardStyle} rounded-3xl p-8 flex flex-col justify-between group cursor-pointer relative overflow-hidden animate-slide-up transition-all duration-300`}
                     style={{ animationDelay: `${idx * 100}ms` }}
                 >
                     {/* Hover Glow Effect */}
-                    <div className="absolute -right-20 -top-20 w-40 h-40 bg-brand-500/20 blur-[50px] rounded-full group-hover:bg-brand-500/30 transition-all duration-500"></div>
+                    <div className={`absolute -right-20 -top-20 w-40 h-40 blur-[50px] rounded-full transition-all duration-500 ${isFree ? 'bg-red-500/20 group-hover:bg-red-500/30' : 'bg-brand-500/20 group-hover:bg-brand-500/30'}`}></div>
                     
                     <div>
                         <div className="flex justify-between items-start mb-6">
-                            <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-slate-800 to-slate-900 border border-white/10 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
-                                <span className="text-2xl font-bold text-brand-400">{examName.charAt(0)}</span>
+                            <div className={`w-14 h-14 rounded-2xl border flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300 ${iconBg}`}>
+                                <span className="text-2xl font-bold">{examName.charAt(0)}</span>
                             </div>
-                            <div className={`px-3 py-1 text-xs font-bold uppercase tracking-wider rounded-full border ${isComingSoon ? 'bg-slate-800 text-slate-500 border-slate-700' : 'bg-brand-500/10 text-brand-400 border-brand-500/20'}`}>
-                                {isComingSoon ? 'Coming Soon' : 'Active'}
+                            <div className={`px-3 py-1 text-xs font-bold uppercase tracking-wider rounded-full border ${badgeStyle}`}>
+                                {isFree ? 'FREE' : (isComingSoon ? 'Coming Soon' : 'Active')}
                             </div>
                         </div>
                         
-                        <h3 className="text-2xl font-bold text-white mb-2 group-hover:text-brand-400 transition-colors duration-300">{examName}</h3>
+                        <h3 className={`text-2xl font-bold mb-2 transition-colors duration-300 ${isFree ? 'text-white group-hover:text-red-400' : 'text-white group-hover:text-brand-400'}`}>{examName}</h3>
                         <p className="text-slate-400 text-sm leading-relaxed">
-                            Comprehensive preparation modules for {examName} aspirants.
+                            {isFree ? "Practice with our free daily mock tests. No login required." : `Comprehensive preparation modules for ${examName} aspirants.`}
                         </p>
                     </div>
                     
@@ -45,7 +59,7 @@ const MockTestsView: React.FC<MockTestsViewProps> = ({ onSelectExam }) => {
                             <span className="text-slate-500 text-xs uppercase tracking-wider font-semibold">Topics</span>
                             <span className="text-white font-bold text-lg">{topicCount}</span>
                         </div>
-                        <div className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center group-hover:bg-brand-500 group-hover:text-white transition-all duration-300">
+                        <div className={`w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 ${isFree ? 'bg-red-500/10 text-red-400 group-hover:bg-red-500 group-hover:text-white' : 'bg-white/5 group-hover:bg-brand-500 group-hover:text-white'}`}>
                              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
                             </svg>

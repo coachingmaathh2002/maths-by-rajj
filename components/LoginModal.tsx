@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { Student } from '../types.ts';
+import { Student } from '../types';
 
 interface LoginModalProps {
     isOpen: boolean;

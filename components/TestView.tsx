@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
-import { testData } from '../constants.ts';
+import { testData } from '../constants';
 
 declare global {
     interface Window {

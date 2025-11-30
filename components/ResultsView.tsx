@@ -1,7 +1,7 @@
 
 import React, { useEffect, useRef } from 'react';
-import { testData } from '../constants.ts';
-import { Student } from '../types.ts';
+import { testData } from '../constants';
+import { Student } from '../types';
 
 declare global {
     interface Window {

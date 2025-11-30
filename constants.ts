@@ -1,5 +1,5 @@
 
-import { TestData, Student, Review, StudentData } from './types.ts';
+import { TestData, Student, Review, StudentData } from './types';
 
 export const studentData: StudentData = {
   'WBJEE': [
@@ -37,12 +37,99 @@ export const studentData: StudentData = {
 };
 
 export const studentReviews: Review[] = [
-  { name: 'Rohan Dey', review: 'This platform is excellent for practicing math problems. The sections are well-organized and the interface is clean and easy to use. Highly recommended for exam preparation!' },
-  { name: 'Priya Mukherjee', review: 'I used this app to prepare for my WBJEE exam, and it really helped. The questions are relevant and the instant feedback is a great feature. Thank you for this amazing tool!' },
-  { name: 'Amit Das', review: 'The test sections are very useful. I especially like the variety of questions for each topic. A must-have for any student preparing for competitive exams.' },
+  { 
+    name: 'Rohan Dey', 
+    review: 'This platform is excellent for practicing math problems. The sections are well-organized and the interface is clean and easy to use. Highly recommended for exam preparation!',
+    course: 'WBJEE Rank 142',
+    image: 'https://images.unsplash.com/photo-1599566150163-29194dcaad36?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80'
+  },
+  { 
+    name: 'Priya Mukherjee', 
+    review: 'I used this app to prepare for my WBJEE exam, and it really helped. The questions are relevant and the instant feedback is a great feature. Thank you for this amazing tool!',
+    course: 'Jadavpur University',
+    image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80'
+  },
+  { 
+    name: 'Amit Das', 
+    review: 'The test sections are very useful. I especially like the variety of questions for each topic. A must-have for any student preparing for competitive exams.',
+    course: 'JEE Mains Aspirant',
+    image: 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80'
+  },
+  {
+    name: 'Sneha Roy',
+    review: 'Maths by Raj Sir is the best! The detailed solutions in the mock tests helped me clarify my doubts instantly. I feel much more confident now.',
+    course: 'Class 12 Student',
+    image: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80'
+  },
+  {
+    name: 'Vikram Singh',
+    review: 'Mock tests are exactly like the real exam pattern. It helped me manage my time better during the actual test. Scored 95% thanks to this app.',
+    course: 'WBJEE Rank 56',
+    image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80'
+  },
+  {
+    name: 'Anjali Sharma',
+    review: 'The Free Mock Tests section is a lifesaver for daily practice. The questions are tricky but very conceptual. Great for building strong basics.',
+    course: 'CSIR NET Aspirant',
+    image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80'
+  }
 ];
 
 export const testData: TestData = {
+    'Free Mock Tests': {
+        'Daily General Math': {
+            title: 'Daily General Math Challenge',
+            description: 'A quick 10-question test to keep your math skills sharp. Updated daily!',
+            time: '20 min',
+            difficulty: 'Medium',
+            questions: [
+                {
+                    id: 'free-1',
+                    question: "If $f(x) = 2x^2 - 3x + 1$, find $f(2)$.",
+                    options: ["1", "3", "5", "0"],
+                    answer: "3"
+                },
+                {
+                    id: 'free-2',
+                    question: "What is the value of $\\sin(90^\\circ) + \\cos(0^\\circ)$?",
+                    options: ["0", "1", "2", "-1"],
+                    answer: "2"
+                },
+                {
+                    id: 'free-3',
+                    question: "Solve for x: $3^{x+1} = 81$.",
+                    options: ["1", "2", "3", "4"],
+                    answer: "3"
+                },
+                {
+                    id: 'free-4',
+                    question: "The area of a circle with radius 7 cm is (use $\\pi \\approx 22/7$)...",
+                    options: ["154 sq cm", "44 sq cm", "144 sq cm", "100 sq cm"],
+                    answer: "154 sq cm"
+                },
+                {
+                    id: 'free-5',
+                    question: "Find the mean of the first 5 prime numbers.",
+                    options: ["3.6", "5.6", "5.2", "4.8"],
+                    answer: "5.6"
+                }
+            ]
+        },
+        'Calculus Basics': {
+            title: 'Calculus Basics',
+            description: 'Fundamental questions on Limits and Derivatives.',
+            time: '15 min',
+            difficulty: 'Easy',
+            questions: [
+                {
+                    id: 'free-c1',
+                    question: "$\\frac{d}{dx}(x^n) = $",
+                    options: ["$nx^{n-1}$", "$x^{n+1}/(n+1)$", "$nx^n$", "$n^x$"],
+                    answer: "$nx^{n-1}$"
+                }
+            ]
+        }
+    },
     'WBJEE': {
         'A.P., G.P., H.P.': {
             title: 'A.P., G.P., H.P. Test',

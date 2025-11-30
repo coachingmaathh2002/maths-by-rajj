@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { testData } from '../constants.ts';
+import { testData } from '../constants';
 
 interface ExamTopicsViewProps {
     examName: string;
